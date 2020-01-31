@@ -1,5 +1,3 @@
 x/reputation/client
-x/reputation/handler.go
-x/reputation/internal/keeper
-x/reputation/internal/types
 x/reputation/alias.go
+x/reputation/handler.go

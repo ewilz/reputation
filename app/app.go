@@ -186,10 +186,8 @@ func NewInitApp(logger log.Logger, db dbm.DB, traceStore io.Writer, loadLatest b
 	)
 
 	app.reputationKeeper = reputation.NewKeeper(
-		app.bankKeeper,
 		app.cdc,
 		keys[reputation.StoreKey],
-		reputation.DefaultCodespace,
 	)
 
 	app.mm = module.NewManager(
