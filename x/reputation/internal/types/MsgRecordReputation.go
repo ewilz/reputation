@@ -8,17 +8,17 @@ var _ sdk.Msg = &MsgRecordReputation{}
 
 // MsgRecordReputation - struct for recording reputation score
 type MsgRecordReputation struct {
-	Account      sdk.AccAddress `json:"creator" yaml:"creator"`           // account address associated to reputation score
-	Score        int            `json:"score" yaml:"score"`               // reputation score
-	StorageHash  string         `json:"storageHash" yaml:"storageHash"`   // storage hash representing app associated with reputation score
+	Account      sdk.AccAddress `json:"creator" yaml:"creator"`             // account address associated to reputation score
+	Score        int            `json:"score" yaml:"score"`                 // reputation score
+	ApplicationID  string       `json:"applicationID" yaml:"applicationID"` // application id representing app associated with reputation score
 }
 
 // NewMsgRecordReputation is a constructor function for MsgGreet
-func NewMsgRecordReputation(account sdk.AccAddress, score int, storageHash string) MsgRecordReputation {
+func NewMsgRecordReputation(account sdk.AccAddress, score int, applicationID string) MsgRecordReputation {
 	return MsgRecordReputation{
-		Account:      account,
-		Score:        score,
-		StorageHash:  storageHash,
+		Account:        account,
+		Score:          score,
+		ApplicationID:  applicationID,
 	}
 }
 
@@ -45,8 +45,8 @@ func (msg MsgRecordReputation) ValidateBasic() sdk.Error {
 	if msg.Account.Empty() {
 		return sdk.ErrInvalidAddress(msg.Account.String())
 	}
-  if msg.StorageHash == "" {
-		return sdk.ErrUnknownRequest("StorageHash field cannot be empty")
+  if msg.ApplicationID == "" {
+		return sdk.ErrUnknownRequest("applicationID field cannot be empty")
 	}
 	return nil
 }
