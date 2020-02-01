@@ -31,6 +31,5 @@ func getReputation(ctx sdk.Context, path []string, k Keeper) (res []byte, sdkErr
 	if err != nil {
 		return nil, sdk.NewError(types.DefaultCodespace, types.CodeInvalid, "Could not marshal result to JSON")
 	}
-
 	return res, nil
 }

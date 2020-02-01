@@ -30,10 +30,9 @@ func (k Keeper) Logger(ctx sdk.Context) log.Logger {
 	return ctx.Logger().With("module", fmt.Sprintf("x/%s", types.ModuleName))
 }
 
-
 // SetReputation sets a reputation
 func (k Keeper) SetReputation(ctx sdk.Context, reputation types.Reputation) {
-	storageHash := reputation.ApplicationID + reputation.Account.String()
+	storageHash := []byte(reputation.ApplicationID + reputation.Account.String())
 	store := ctx.KVStore(k.storeKey)
 	bz := k.cdc.MustMarshalBinaryLengthPrefixed(reputation)
 	key := []byte(storageHash)
